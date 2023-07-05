@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Verification</title>
+</head>
+<body>
+    <h2>Enter the OTP sent to {{ mobile_number }}</h2>
+    <form method="post" action="{% url 'otp_verification' %}">
+        {% csrf_token %}
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <input type="hidden" name="mobile_number" value="{{ mobile_number }}">
+        <label for="otp">OTP:</label>
+        <input type="text" id="otp" name="otp"><br><br>
+        <input type="submit" value="Verify OTP">
+    </form>
+</body>
+</html>
